@@ -4,6 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mxc="https://schemas.eremexcontrols.net/avalonia/charts"
         xmlns:testEremex="clr-namespace:TestEremex"
+        xmlns:mxd="https://schemas.eremexcontrols.net/avalonia/docking"
+
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TestEremex.MainWindow"
         Title="TestEremex"
@@ -11,17 +13,22 @@
     <Window.DataContext>
         <testEremex:MyViewModel />
     </Window.DataContext>
-    <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,Auto,Auto,*">
-        <Button Click="Button_OnClick">Generate</Button>
-        <Button Click="Button_OnClick2" Grid.Row="0" Grid.Column="1">Draw</Button>
-        <mxc:CartesianChart Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0">
-                           
-            <mxc:CartesianChart.Series>
-                <mxc:CartesianSeries DataAdapter="{Binding DataAdapter}">
-                    <mxc:CartesianLineSeriesView Color="#0094ff" Thickness="2" />
-                </mxc:CartesianSeries>
-            </mxc:CartesianChart.Series>
-        </mxc:CartesianChart>
-        
+    <Grid RowDefinitions="Auto,*">
+        <StackPanel Orientation="Horizontal">
+            <Button Click="Button_OnClick1">1. Load Layout1</Button>
+            <Button Click="Button_OnClick2">2. Load Layout2</Button>
+            <Button Click="Button_OnClick3">3. Load Layout1 Again(Упс табы пропали)</Button>
+
+            <!--<Button Click="Button_OpenControlsAndSave1">1. Generate and Save Layout1</Button>
+            <Button Click="Button_OpenControlsAndSave2">2. Generate and Save Layout2</Button>-->
+        </StackPanel>
+
+        <mxd:DockManager Grid.Row="1" x:Name="DockControl" mxd:DockManagerSerializer.RestoreBehavior="Default"
+                         BorderThickness="0">
+            <mxd:DockGroup x:Name="DockGroup">
+
+            </mxd:DockGroup>
+        </mxd:DockManager>
+
     </Grid>
 </Window>

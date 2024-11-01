@@ -1,0 +1,22 @@
+<testEremex:MyControl xmlns="https://github.com/avaloniaui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:mx="https://schemas.eremexcontrols.net/avalonia"
+           xmlns:testEremex="clr-namespace:TestEremex"
+           xmlns:mxdg="https://schemas.eremexcontrols.net/avalonia/datagrid"
+           mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+           x:Class="TestEremex.GridUserControl">
+    <StackPanel Orientation="Vertical">
+        <Label>tetertertertwertwert</Label>
+        <mxdg:DataGridControl>
+            <mxdg:GridColumn Header="tstetwet"></mxdg:GridColumn>
+            <mxdg:GridColumn Header="tstetwet333"></mxdg:GridColumn>
+            <mxdg:GridColumn Header="tstetwet22"></mxdg:GridColumn>
+        </mxdg:DataGridControl>
+        <Label>tetertertertwertwert</Label>
+        <Button>sdfsdf</Button>
+        <Button>sdfssdasdfdf</Button>
+        <Button>sdfsasdfsaddf</Button>
+    </StackPanel>
+</testEremex:MyControl>
