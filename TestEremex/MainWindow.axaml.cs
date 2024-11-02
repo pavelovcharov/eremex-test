@@ -90,11 +90,17 @@ public partial class MainWindow : Window
                         {
                             var control = _manager.CreateVisualComponent(id);
 
-                            var visualParent = control.GetVisualParent();   //ПРИХОДИТСЯ ЧИСТИТЬ ПАРЕНТА ИНАЧЕ НЕ ВОССТАНАВЛИВАЕТСЯ И ПАДАЕТ
-                            if (visualParent is Grid grid)                  //ПРИХОДИТСЯ ЧИСТИТЬ ПАРЕНТА ИНАЧЕ НЕ ВОССТАНАВЛИВАЕТСЯ И ПАДАЕТ
-                                grid.Children.Remove(control);              //ПРИХОДИТСЯ ЧИСТИТЬ ПАРЕНТА ИНАЧЕ НЕ ВОССТАНАВЛИВАЕТСЯ И ПАДАЕТ
-                            if (visualParent is ContentPresenter presenter) //МОЖЕТ Я КАК ТО НЕПРАВИЛЬНО УБИРАЮ КОМПОНЕНТУ... 
-                                presenter.Content = null;                   //НО СТРАННО ЧТО ПАНЕЛЬ ПРОПАЛА А CONTROL ЕЩЕ НА НЕЙ ВСЁ ЕЩЕ ЛЕЖИТ
+
+                            if (DockManager.GetDockItem(control) is DockPane oldPane)
+                            {
+                                oldPane.Content = null;
+                            }
+                            
+                            // var visualParent = control.GetVisualParent();   //ПРИХОДИТСЯ ЧИСТИТЬ ПАРЕНТА ИНАЧЕ НЕ ВОССТАНАВЛИВАЕТСЯ И ПАДАЕТ
+                            // if (visualParent is Grid grid)                  //ПРИХОДИТСЯ ЧИСТИТЬ ПАРЕНТА ИНАЧЕ НЕ ВОССТАНАВЛИВАЕТСЯ И ПАДАЕТ
+                            //     grid.Children.Remove(control);              //ПРИХОДИТСЯ ЧИСТИТЬ ПАРЕНТА ИНАЧЕ НЕ ВОССТАНАВЛИВАЕТСЯ И ПАДАЕТ
+                            // if (visualParent is ContentPresenter presenter) //МОЖЕТ Я КАК ТО НЕПРАВИЛЬНО УБИРАЮ КОМПОНЕНТУ... 
+                            //     presenter.Content = null;                   //НО СТРАННО ЧТО ПАНЕЛЬ ПРОПАЛА А CONTROL ЕЩЕ НА НЕЙ ВСЁ ЕЩЕ ЛЕЖИТ
 
                             pane.Content = control;
 
@@ -127,11 +133,16 @@ public partial class MainWindow : Window
 
         var control = visualComponent;
         {
-            var visualParent = control.GetVisualParent();   //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
-            if (visualParent is Grid grid)                  //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
-                grid.Children.Remove(control);              //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
-            if (visualParent is ContentPresenter presenter) //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
-                presenter.Content = null;                   //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
+            if (DockManager.GetDockItem(control) is DockPane oldPane)
+            {
+                oldPane.Content = null;
+            }
+            
+            // var visualParent = control.GetVisualParent();   //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
+            // if (visualParent is Grid grid)                  //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
+            //     grid.Children.Remove(control);              //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
+            // if (visualParent is ContentPresenter presenter) //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
+            //     presenter.Content = null;                   //ЭТО ЕСЛИ ЗАКРЫЛИ КОМПОНЕНТУ НО МЫ ЕЁ СНОВА ОТКРЫВАЕМ.
 
             pane.Content = control;
 
